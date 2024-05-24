@@ -3,251 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="icon" href="logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <title>Dashboard</title>
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3 p-0" id="menu">
-            <h2 class="mt-3 mb-4 text-center">Menu</h2>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link text-center" href="#">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-center" href="config.html">Configurações</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-9">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container d-flex align-items-center">
-                    <h2 id="titulo" class="navbar-brand mb-0">Dashboard</h2>
-                    <div class="input-group">
-                        <input type="text" class="form-control mr-sm-2" id="pesquisar" placeholder="Pesquisar">
-                        <span class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" onclick="pesquisar()">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </div>
-            </nav>
-            <div class="content">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3 class="text-center">Água</h3>
-                        <div class="chart-container" id="aguaChartContainer">
-                            <canvas id="aguaChart"></canvas>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 p-0" id="menu">
+                <h2 class="mt-3 mb-4 text-center">Menu</h2>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="config.html">Configurações</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="container d-flex align-items-center">
+                        <h2 id="titulo" class="navbar-brand mb-0">Dashboard</h2>
+                        <div class="input-group">
+                            <input type="text" class="form-control mr-sm-2" id="pesquisar" placeholder="Pesquisar">
+                            <span class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" onclick="pesquisar()">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </span>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <h3 class="text-center">Lixo</h3>
-                        <div class="chart-container" id="LixoChartContainer">
-                            <canvas id="LixoChart"></canvas>
+                </nav>
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="text-center">Água</h3>
+                            <div class="chart-container" id="aguaChartContainer">
+                                <canvas id="aguaChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="text-center">Lixo</h3>
+                            <div class="chart-container" id="LixoChartContainer">
+                                <canvas id="LixoChart"></canvas>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3 class="text-center">Energia Elétrica</h3>
-                        <div class="chart-container" id="energiaChartContainer">
-                            <canvas id="energiaChart"></canvas>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="text-center">Energia Elétrica</h3>
+                            <div class="chart-container" id="energiaChartContainer">
+                                <canvas id="energiaChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="text-center">Internet</h3>
+                            <div class="chart-container" id="internetChartContainer">
+                                <canvas id="internetChart"></canvas>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <h3 class="text-center">Internet</h3>
-                        <div class="chart-container" id="internetChartContainer">
-                            <canvas id="internetChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 offset-md-3">
-                        <h3 class="text-center">Sistema de Esgoto</h3>
-                        <div class="chart-container" id="esgotoChartContainer">
-                            <canvas id="esgotoChart"></canvas>
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <h3 class="text-center">Sistema de Esgoto</h3>
+                            <div class="chart-container" id="esgotoChartContainer">
+                                <canvas id="esgotoChart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    let IN_ESGOTO_REDE_PUBLICA_1 = 0;
-    let IN_ESGOTO_REDE_PUBLICA_0 = 0;
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        
+        function createCharts(data) {
+            console.log('Criando gráficos...');
+            let IN_ESGOTO_FOSSA_SEPTICA = 0;
+            let IN_ESGOTO_FOSSA_COMUM = 0;
+            let IN_ESGOTO_FOSSA = 0;
+            let IN_ESGOTO_INEXISTENTE = 0;
 
-    let IN_AGUA_POTAVEL_1 = 0;
-    let IN_AGUA_POTAVEL_0 = 0;
-    let IN_ENERGIA_REDE_PUBLICA_1 = 0;
-    let IN_ENERGIA_REDE_PUBLICA_0 = 0;
+            let IN_AGUA_POTAVEL = 0;
+            let IN_AGUA_REDE_PUBLICA = 0;
+            let IN_AGUA_POCO_ARTESIANO = 0;
+            let IN_AGUA_CACIMBA = 0;
+            let IN_AGUA_FONTE_RIO = 0;
+            let IN_AGUA_INEXISTENTE = 0;
 
-    let IN_LIXO_SERVICO_COLETA_1 = 0;
-    let IN_LIXO_SERVICO_COLETA_0 = 0;
-    let IN_INTERNET_1 = 0;
-    let IN_INTERNET_0 = 0;
+            let IN_ENERGIA_REDE_PUBLICA = 0;
+            let IN_ENERGIA_GERADOR_FOSSIL = 0;
+            let IN_ENERGIA_RENOVAVEL = 0;
+            let IN_ENERGIA_INEXISTENTE = 0;
 
-    const className = 'Microdados_NE';
-    const url = `https://parseapi.back4app.com/classes/${className}`;
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-Parse-Application-Id': 'iRnH8RFUpMtwo9rQA6oVwfUveShMIghHpOuQ7JPq',
-            'X-Parse-REST-API-Key': 'RnURHvIzxQHiw4Ok0zQpYmHuQJEuLAbYQxDv68dU',
-            'Content-Type': 'application/json'
+            let IN_LIXO_SERVICO_COLETA = 0;
+            let IN_LIXO_QUEIMA = 0;
+            let IN_LIXO_ENTERRA = 0;
+            let IN_LIXO_DESTINO_FINAL_PUBLICO = 0;
+            let IN_LIXO_DESCARTA_OUTRA_AREA = 0;
+
+            let IN_INTERNET = 0;
+            let IN_INTERNET_ALUNOS = 0;
+            let IN_INTERNET_ADMINISTRATIVO = 0;
+            let IN_INTERNET_APRENDIZAGEM = 0;
+            let IN_INTERNET_COMUNIDADE = 0;
+
+            
+            data.forEach(item => {
+                
+                IN_ESGOTO_FOSSA_SEPTICA += item.IN_ESGOTO_FOSSA_SEPTICA || 0;
+                IN_ESGOTO_FOSSA_COMUM += item.IN_ESGOTO_FOSSA_COMUM || 0;
+                IN_ESGOTO_FOSSA += item.IN_ESGOTO_FOSSA || 0;
+                IN_ESGOTO_INEXISTENTE += item.IN_ESGOTO_INEXISTENTE || 0;
+
+               
+                IN_AGUA_POTAVEL += item.IN_AGUA_POTAVEL || 0;
+                IN_AGUA_REDE_PUBLICA += item.IN_AGUA_REDE_PUBLICA || 0;
+                IN_AGUA_POCO_ARTESIANO += item.IN_AGUA_POCO_ARTESIANO || 0;
+                IN_AGUA_CACIMBA += item.IN_AGUA_CACIMBA || 0;
+                IN_AGUA_FONTE_RIO += item.IN_AGUA_FONTE_RIO || 0;
+                IN_AGUA_INEXISTENTE += item.IN_AGUA_INEXISTENTE || 0;
+
+              
+                IN_ENERGIA_REDE_PUBLICA += item.IN_ENERGIA_REDE_PUBLICA || 0;
+                IN_ENERGIA_GERADOR_FOSSIL += item.IN_ENERGIA_GERADOR_FOSSIL || 0;
+                IN_ENERGIA_RENOVAVEL += item.IN_ENERGIA_RENOVAVEL || 0;
+                IN_ENERGIA_INEXISTENTE += item.IN_ENERGIA_INEXISTENTE || 0;
+
+                IN_LIXO_SERVICO_COLETA += item.IN_LIXO_SERVICO_COLETA || 0;
+                IN_LIXO_QUEIMA += item.IN_LIXO_QUEIMA || 0;
+                IN_LIXO_ENTERRA += item.IN_LIXO_ENTERRA || 0;
+                IN_LIXO_DESTINO_FINAL_PUBLICO += item.IN_LIXO_DESTINO_FINAL_PUBLICO || 0;
+                IN_LIXO_DESCARTA_OUTRA_AREA += item.IN_LIXO_DESCARTA_OUTRA_AREA || 0;
+
+              
+                IN_INTERNET += item.IN_INTERNET || 0;
+                IN_INTERNET_ALUNOS += item.IN_INTERNET_ALUNOS || 0;
+                IN_INTERNET_ADMINISTRATIVO += item.IN_INTERNET_ADMINISTRATIVO || 0;
+                IN_INTERNET_APRENDIZAGEM += item.IN_INTERNET_APRENDIZAGEM || 0;
+                IN_INTERNET_COMUNIDADE += item.IN_INTERNET_COMUNIDADE || 0;
+            });
+
+           
+            const esgotoData = [IN_ESGOTO_FOSSA_SEPTICA, IN_ESGOTO_FOSSA_COMUM, IN_ESGOTO_FOSSA, IN_ESGOTO_INEXISTENTE];
+            const aguaData = [IN_AGUA_POTAVEL, IN_AGUA_REDE_PUBLICA, IN_AGUA_POCO_ARTESIANO, IN_AGUA_CACIMBA, IN_AGUA_FONTE_RIO, IN_AGUA_INEXISTENTE];
+            const energiaData = [IN_ENERGIA_REDE_PUBLICA, IN_ENERGIA_GERADOR_FOSSIL, IN_ENERGIA_RENOVAVEL, IN_ENERGIA_INEXISTENTE];
+            const lixoData = [IN_LIXO_SERVICO_COLETA, IN_LIXO_QUEIMA, IN_LIXO_ENTERRA, IN_LIXO_DESTINO_FINAL_PUBLICO, IN_LIXO_DESCARTA_OUTRA_AREA];
+            const internetData = [IN_INTERNET, IN_INTERNET_ALUNOS, IN_INTERNET_ADMINISTRATIVO, IN_INTERNET_APRENDIZAGEM, IN_INTERNET_COMUNIDADE];
+
+            const labelsEsgoto = ['Fossa Séptica', 'Fossa Comum', 'Fossa', 'Inexistente'];
+            const labelsAgua = ['Potável', 'Rede Pública', 'Poço Artesiano', 'Cacimba', 'Fonte de Rio', 'Inexistente'];
+            const labelsEnergia = ['Rede Pública', 'Gerador Fóssil', 'Renovável', 'Inexistente'];
+            const labelsLixo = ['Serviço de Coleta', 'Queima', 'Enterra', 'Destino Final Público', 'Descarta em Outra Área'];
+            const labelsInternet = ['Internet Geral', 'Alunos', 'Administrativo', 'Aprendizagem', 'Comunidade'];
+
+            
+            const colors = ['#2196f3', '#ffb300', '#4caf50', '#f44336', '#9c27b0', '#808080'];
+
+            
+            createChart('esgotoChart', 'Sistema de Esgoto', esgotoData, labelsEsgoto, colors);
+            createChart('aguaChart', 'Água', aguaData, labelsAgua, colors);
+            createChart('energiaChart', 'Energia Elétrica', energiaData, labelsEnergia, colors);
+            createChart('LixoChart', 'Sistema de Coleta de Lixo', lixoData, labelsLixo, colors);
+            createChart('internetChart', 'Internet', internetData, labelsInternet, colors);
         }
-    };
 
-    fetch(url, options)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data && data.results) {
-                data.results.forEach(item => {
-                    if (item.IN_AGUA_POTAVEL === 1) {
-                    IN_AGUA_POTAVEL_1++;
-                } else if (item.IN_AGUA_POTAVEL === 0) {
-                    IN_AGUA_POTAVEL_0++;
-                }
-
-                if (item.IN_ENERGIA_REDE_PUBLICA === 1) {
-                    IN_ENERGIA_REDE_PUBLICA_1++;
-                } else if (item.IN_ENERGIA_REDE_PUBLICA === 0) {
-                    IN_ENERGIA_REDE_PUBLICA_0++;
-                }
-
-                if (item.IN_ESGOTO_REDE_PUBLICA === 1) {
-                    IN_ESGOTO_REDE_PUBLICA_1++;
-                } else if (item.IN_ESGOTO_REDE_PUBLICA === 0) {
-                    IN_ESGOTO_REDE_PUBLICA_0++;
-                }
-
-                if (item.IN_LIXO_SERVICO_COLETA === 1) {
-                    IN_LIXO_SERVICO_COLETA_1++;
-                } else if (item.IN_LIXO_SERVICO_COLETA === 0) {
-                    IN_LIXO_SERVICO_COLETA_0++;
-                }
-
-                if (item.IN_INTERNET === 1) {
-                    IN_INTERNET_1++;
-                } else if (item.IN_INTERNET === 0) {
-                    IN_INTERNET_0++;
-                }
-                });
-
-        console.log("IN_AGUA_POTAVEL_1:", IN_AGUA_POTAVEL_1);
-        console.log("IN_AGUA_POTAVEL_0:", IN_AGUA_POTAVEL_0);
-        console.log("IN_ENERGIA_REDE_PUBLICA_1:", IN_ENERGIA_REDE_PUBLICA_1);
-        console.log("IN_ENERGIA_REDE_PUBLICA_0:", IN_ENERGIA_REDE_PUBLICA_0);
-        console.log("IN_ESGOTO_REDE_PUBLICA_1:", IN_ESGOTO_REDE_PUBLICA_1);
-        console.log("IN_ESGOTO_REDE_PUBLICA_0:", IN_ESGOTO_REDE_PUBLICA_0);
-        console.log("IN_LIXO_SERVICO_COLETA_1:", IN_LIXO_SERVICO_COLETA_1);
-        console.log("IN_LIXO_SERVICO_COLETA_0:", IN_LIXO_SERVICO_COLETA_0);
-        console.log("IN_INTERNET_1:", IN_INTERNET_1);
-        console.log("IN_INTERNET_0:", IN_INTERNET_0);
-
-
-                var dadosesgotoCtx = {
-                    'Possui': [IN_ESGOTO_REDE_PUBLICA_1, IN_ESGOTO_REDE_PUBLICA_0],
-                };
-                var dadosaguaCtx = {
-                    'Possui': [ IN_AGUA_POTAVEL_1,  IN_AGUA_POTAVEL_0],
-                };
-                var dadosLixoCtx = {
-                    'Possui': [IN_LIXO_SERVICO_COLETA_1, IN_LIXO_SERVICO_COLETA_0],
-                };
-                var dadosenergiaCtx = {
-                    'Possui': [IN_ENERGIA_REDE_PUBLICA_1, IN_ENERGIA_REDE_PUBLICA_0],
-                };
-                var dadosinternetCtx = {
-                    'Possui': [IN_INTERNET_1, IN_INTERNET_0],
-                };
-
-                var cores = {
-                    'Possui': ['#2196f3', '#ffb300'],
-                };
-
-                var escolas = ['Possui', 'Não possui'];
-
-                var esgotoCtx = document.getElementById('esgotoChart').getContext('2d');
-                var esgotoChart = createChart(esgotoCtx, dadosesgotoCtx['Possui'], 'Sistema de Esgoto', cores['Possui'], escolas);
-
-                var aguaCtx = document.getElementById('aguaChart').getContext('2d');
-                var aguaChart = createChart(aguaCtx, dadosaguaCtx['Possui'], 'Agua Encanada', cores['Possui'], escolas);
-
-                var lixoCtx = document.getElementById('LixoChart').getContext('2d');
-                var lixoChart = createChart(lixoCtx, dadosLixoCtx['Possui'], 'Sistema de coleta de lixo', cores['Possui'], escolas);
-
-                var energiaCtx = document.getElementById('energiaChart').getContext('2d');
-                var energiaChart = createChart(energiaCtx, dadosenergiaCtx['Possui'], 'Energia eletrica', cores['Possui'], escolas);
-
-                var internetCtx = document.getElementById('internetChart').getContext('2d');
-                var internetChart = createChart(internetCtx, dadosinternetCtx['Possui'], 'Internet', cores['Possui'], escolas);
-
-
-
-
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching class data:', error);
-        });
-
-    function createChart(ctx, data, label, colors, labels) {
-        return new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: label,
-                    backgroundColor: colors,
-                    borderColor: colors,
-                    data: data,
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
+        
+        function createChart(chartId, label, data, labels, colors) {
+            const ctx = document.getElementById(chartId).getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label,
+                        backgroundColor: colors,
+                        borderColor: colors,
+                        data: data
                     }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        
+        function pesquisar() {
+            const termo = document.getElementById('pesquisar').value.toLowerCase();
+            const elementos = ['aguaChartContainer', 'LixoChartContainer', 'energiaChartContainer', 'internetChartContainer', 'esgotoChartContainer'];
+            let encontrado = false;
+            for (let i = 0; i < elementos.length; i++) {
+                const elemento = document.getElementById(elementos[i]);
+                if (elemento.innerHTML.toLowerCase().includes(termo)) {
+                    elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    encontrado = true;
+                    break;
                 }
             }
-        });
-    }
-
-    function pesquisar() {
-        var termo = document.getElementById('pesquisar').value.toLowerCase();
-        var elementos = ['aguaChartContainer', 'LixoChartContainer', 'energiaChartContainer', 'internetChartContainer', 'esgotoChartContainer'];
-        var encontrado = false;
-        for (var i = 0; i < elementos.length; i++) {
-            var elemento = document.getElementById(elementos[i]);
-            if (elemento.innerHTML.toLowerCase().includes(termo)) {
-                elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                encontrado = true;
-                break;
+            if (!encontrado) {
+                alert('Nenhum gráfico encontrado com esse nome.');
             }
         }
-        if (!encontrado) {
-            alert('Nenhum gráfico encontrado com esse nome.');
-        }
-    }
-</script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+       
+        async function loadAndCreateCharts() {
+            try {
+                console.log('Carregando dados...');
+                const config = {
+                    headers: {
+                        'X-Parse-Application-Id': 'iRnH8RFUpMtwo9rQA6oVwfUveShMIghHpOuQ7JPq',
+                        'X-Parse-REST-API-Key': 'RnURHvIzxQHiw4Ok0zQpYmHuQJEuLAbYQxDv68dU'
+                    }
+                };
+
+                const response = await axios.get('https://parseapi.back4app.com/classes/Microdados_NE?limit=100000', config);
+                const data = response.data.results;
+                console.log(`Quantidade de linhas carregadas: ${data.length}`);
+                createCharts(data);
+            } catch (error) {
+                console.error('Erro ao carregar os dados:', error);
+            }
+        }
+
+        // aqui só cria os graficos depois que todos os dados forem criados
+        window.onload = function() {
+            loadAndCreateCharts();
+        };
+    </script>
 </body>
 </html>
