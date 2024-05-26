@@ -63,7 +63,7 @@ function createCharts(data) {
         chartData.internet.data[4] += item.IN_INTERNET_COMUNIDADE || 0;
     });
 
-    const colors = ['#BABDBF', '#3F7373', '#BF754B', '#A64826', '#732B1A'];
+    const colors = ['#BABDBF', '#3F7373', '#BF754B', '#A64826', '#732B1A', '#BEC092'];
 
     createChart('esgotoChart', 'Sistema de Esgoto', chartData.esgoto.data, chartData.esgoto.labels, colors);
     createChart('aguaChart', 'Água', chartData.agua.data, chartData.agua.labels, colors);
