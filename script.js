@@ -177,27 +177,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
   function pesquisar() {
-  const termo = document.getElementById("pesquisar").value.toLowerCase();
-  const elementos = [
-    "aguaChartContainer",
-    "LixoChartContainer",
-    "energiaChartContainer",
-    "internetChartContainer",
-    "esgotoChartContainer",
-  ];
-  
-  let encontrado = false;
+  const termo = document.getElementById("pesquisar").value.trim().toLowerCase();
+  const chartDataKeys = Object.keys(chartData);
 
-  elementos.forEach((elementoId) => {
-    const elemento = document.getElementById(elementoId);
-    if (elemento) {
-      const chartLabels = elemento.querySelector("canvas").getAttribute("data-labels").toLowerCase();
-      if (chartLabels.includes(termo)) {
-        elemento.style.display = "block";
-        encontrado = true;
-      } else {
-        elemento.style.display = "none";
-      }
+  let encontrado = false;
+  
+  chartDataKeys.forEach(key => {
+    const labels = chartData[key].labels.map(label => label.toLowerCase());
+    const chartContainer = document.getElementById(key + "ChartContainer");
+
+    if (labels.some(label => label.includes(termo))) {
+      chartContainer.style.display = "block";
+      encontrado = true;
+    } else {
+      chartContainer.style.display = "none";
     }
   });
 
