@@ -177,23 +177,25 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
   function pesquisar() {
-    const termo = document.getElementById("pesquisar").value.toLowerCase();
-    const elementos = [
-      "aguaChartContainer",
-      "LixoChartContainer",
-      "energiaChartContainer",
-      "internetChartContainer",
-      "esgotoChartContainer",
-    ];
-    let encontrado = false;
-    elementos.forEach((elementoId) => {
-      const elemento = document.getElementById(elementoId);
-      if (elemento.innerHTML.toLowerCase().includes(termo)) {
-        elemento.scrollIntoView({ behavior: "smooth", block: "start" });
-        encontrado = true;
-      }
-    });
-    if (!encontrado) {
-      alert("Nenhum gráfico encontrado.");
+  const termo = document.getElementById("pesquisar").value.toLowerCase();
+  const elementos = [
+    "aguaChartContainer",
+    "LixoChartContainer",
+    "energiaChartContainer",
+    "internetChartContainer",
+    "esgotoChartContainer",
+  ];
+  let encontrado = false;
+  elementos.forEach((elementoId) => {
+    const elemento = document.getElementById(elementoId);
+    if (elemento.innerHTML.toLowerCase().includes(termo)) {
+      elemento.style.display = "block";
+      encontrado = true;
+    } else {
+      elemento.style.display = "none";
     }
+  });
+  if (!encontrado) {
+    alert("Nenhum gráfico encontrado.");
   }
+}
