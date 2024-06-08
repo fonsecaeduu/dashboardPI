@@ -185,16 +185,22 @@ document.addEventListener("DOMContentLoaded", function () {
     "internetChartContainer",
     "esgotoChartContainer",
   ];
+  
   let encontrado = false;
+
   elementos.forEach((elementoId) => {
     const elemento = document.getElementById(elementoId);
-    if (elemento.innerHTML.toLowerCase().includes(termo)) {
-      elemento.style.display = "block";
-      encontrado = true;
-    } else {
-      elemento.style.display = "none";
+    if (elemento) {
+      const chartLabels = elemento.querySelector("canvas").getAttribute("data-labels").toLowerCase();
+      if (chartLabels.includes(termo)) {
+        elemento.style.display = "block";
+        encontrado = true;
+      } else {
+        elemento.style.display = "none";
+      }
     }
   });
+
   if (!encontrado) {
     alert("Nenhum gráfico encontrado.");
   }
